@@ -4,18 +4,18 @@ from unittest.mock import (
     patch,
 )
 
-from client_sdk_python.packages.eth_utils import (
+from alaya.packages.eth_utils import (
     is_same_address,
     to_bytes,
 )
 
-from client_sdk_python.packages.ens .constants import (
+from ens.constants import (
     EMPTY_ADDR_HEX,
 )
-from client_sdk_python.packages.ens .main import (
+from ens.main import (
     UnauthorizedError,
 )
-from client_sdk_python import Web3
+from alaya import Web3
 
 
 '''

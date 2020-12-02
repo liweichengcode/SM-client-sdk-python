@@ -58,10 +58,10 @@ extras_require['dev'] = (
 )
 
 setup(
-    name='client_sdk_python',
+    name='alaya.py',
     # *IMPORTANT*: Don't manually change the version here. Use the 'bumpversion' utility.
-    version='0.13.1.7',
-    description="""PlatON Client SDK python""",
+    version='0.13.2.13',
+    description="""PlatON alaya network SDK""",
     # long_description_markdown_filename='README.md',
     author='Piper shinnng',
     author_email='shinnng@outlook.com',
@@ -70,8 +70,8 @@ setup(
     install_requires=[
         "toolz>=0.9.0,<1.0.0;implementation_name=='pypy'",
         "cytoolz>=0.9.0,<1.0.0;implementation_name=='cpython'",
-        "six>=1.15.0",
         "numpy>=1.19.0",
+        "six>=1.15.0",
         # "platon-account>=0.1.2",
         "eth-utils>=1.2.0,<2.0.0",
         "hexbytes>=0.1.0,<1.0.0",

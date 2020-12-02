@@ -109,6 +109,3 @@ fabric.properties
 
 # VS Code
 .vscode/
-
-# Debug
-.debug

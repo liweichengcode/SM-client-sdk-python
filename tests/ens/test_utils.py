@@ -1,5 +1,5 @@
 
-from client_sdk_python.packages.ens .utils import (
+from ens.utils import (
     init_web3,
 )
 

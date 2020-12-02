@@ -4,8 +4,8 @@ from unittest.mock import (
     patch,
 )
 
-from client_sdk_python.packages.ens  import ENS
-from client_sdk_python import Web3
+from ens import ENS
+from alaya import Web3
 
 
 def test_resolver_empty(ens):

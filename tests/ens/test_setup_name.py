@@ -1,12 +1,12 @@
 
 import pytest
 
-from client_sdk_python.packages.ens .main import (
+from ens.main import (
     AddressMismatch,
     UnauthorizedError,
     UnownedName,
 )
-from client_sdk_python import Web3
+from alaya import Web3
 
 
 '''
