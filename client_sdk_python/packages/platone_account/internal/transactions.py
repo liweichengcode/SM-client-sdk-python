@@ -29,8 +29,8 @@ from rlp.sedes import (
     binary,
 )
 
-from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP, TESTNETHRP
-from client_sdk_python.packages.platon_keys.utils.bech32 import decode
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP, TESTNETHRP
+from client_sdk_python.packages.platone_keys.utils.bech32 import decode
 
 
 def bech32_address_bytes(val):

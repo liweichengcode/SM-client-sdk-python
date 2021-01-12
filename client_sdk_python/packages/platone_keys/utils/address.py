@@ -1,7 +1,7 @@
 from client_sdk_python.packages.eth_utils import (
     keccak,
 )
-from client_sdk_python.packages.platon_keys.utils.bech32 import encode, decode, bech32_decode
+from client_sdk_python.packages.platone_keys.utils.bech32 import encode, decode, bech32_decode
 
 
 MIANNETHRP = "lat"

@@ -9,7 +9,7 @@ from hexbytes import (
     HexBytes,
 )
 
-from client_sdk_python.packages.platon_account.internal.signing import (
+from client_sdk_python.packages.platone_account.internal.signing import (
     signature_wrapper,
 )
 
@@ -42,7 +42,7 @@ def defunct_hash_message(primitive=None, hexstr=None, text=None):
 
     .. code-block:: python
 
-        >>> from client_sdk_python.packages.platon_account.messages import defunct_hash_message
+        >>> from client_sdk_python.packages.platone_account.messages import defunct_hash_message
 
         >>> msg = "I♥SF"
         >>> defunct_hash_message(text=msg)

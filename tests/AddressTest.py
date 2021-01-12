@@ -1,5 +1,5 @@
 from client_sdk_python import Web3,HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 
 
 # Solidity source code
@@ -22,7 +22,7 @@ true = True
 false = False
 
 w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
-platon = PlatON(w3)
+platone = PlatONE(w3)
 print(w3.isConnected())
 
 from_address = "lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja"
@@ -35,7 +35,7 @@ bytecode = '608060405234801561001057600080fd5b506101a1806100206000396000f3fe6080
 abi = [{'constant': True, 'inputs': [{'internalType': 'address', 'name': 'addr', 'type': 'address'}], 'name': 'getBalances', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}, {'constant': False, 'inputs': [{'internalType': 'address payable', 'name': 'addr', 'type': 'address'}], 'name': 'transfer', 'outputs': [], 'payable': True, 'stateMutability': 'payable', 'type': 'function'}]
 
 # Instantiate and deploy contract
-Payable = platon.contract(abi=abi, bytecode=bytecode)
+Payable = platone.contract(abi=abi, bytecode=bytecode)
 
 # # Submit the transaction that deploys the contract
 # tx_hash = Greeter.constructor().transact()
@@ -46,16 +46,16 @@ Payable = platon.contract(abi=abi, bytecode=bytecode)
 #
 # contract_instance = platon.contract(address=contractAddress, abi=abi)
 def SendTxn(txn):
-    signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey)
-    res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-    txn_receipt = platon.waitForTransactionReceipt(res)
+    signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey)
+    res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+    txn_receipt = platone.waitForTransactionReceipt(res)
     print(res)
     return txn_receipt
 
 txn = Payable.constructor().buildTransaction(
     {
         'chainId':200,
-        'nonce':platon.getTransactionCount(from_address),
+        'nonce':platone.getTransactionCount(from_address),
         'gas':1500000,
         'value':0,
         'gasPrice':1000000000,
@@ -66,7 +66,7 @@ tx_receipt = SendTxn(txn)
 print(tx_receipt)
 
 # Create the contract instance with the newly-deployed address
-payable = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+payable = platone.contract(address=tx_receipt.contractAddress, abi=abi)
 
 # hrpgot, data = bech32.decode("lax", from_address)
 # address = to_checksum_address(bytes(data))

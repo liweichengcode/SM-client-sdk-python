@@ -1,5 +1,6 @@
 from client_sdk_python import Web3,HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP,TESTNETHRP
 
 
 # Solidity source code
@@ -26,8 +27,9 @@ false = False
 # print(w3.isConnected())
 # from_address = "lax1uqug0zq7rcxddndleq4ux2ft3tv6dqljphydrl"
 # send_privatekey = "983759fe9aac227c535b21d78792d79c2f399b1d43db46ae6d50a33875301557"
-w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
-platon = PlatON(w3)
+# w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
+w3=Web3(HTTPProvider(" http://58.251.94.108:56789"))  #含有国密链的节点
+platone = PlatONE(w3)
 print(w3.isConnected())
 from_address = "lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja"
 print(from_address)
@@ -44,7 +46,7 @@ bytecode ='608060405234801561001057600080fd5b506102b7806100206000396000f3fe60806
 # abi = [{'constant': True, 'inputs': [{'internalType': 'address', 'name': 'addr', 'type': 'address'}], 'name': 'getBalances', 'outputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}, {'constant': False, 'inputs': [{'internalType': 'address payable', 'name': 'addr', 'type': 'address'}], 'name': 'transfer', 'outputs': [], 'payable': True, 'stateMutability': 'payable', 'type': 'function'}]
 abi = [{'constant': True, 'inputs': [{'internalType': 'address[]', 'name': 'arr', 'type': 'address[]'}], 'name': 'IuputArray', 'outputs': [{'internalType': 'address[]', 'name': '', 'type': 'address[]'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}, {'constant': True, 'inputs': [{'internalType': 'uint256', 'name': '', 'type': 'uint256'}], 'name': 'arr', 'outputs': [{'internalType': 'address', 'name': '', 'type': 'address'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}]
 # Instantiate and deploy contract
-Payable = platon.contract(abi=abi, bytecode=bytecode)
+Payable = platone.contract(abi=abi, bytecode=bytecode)
 
 # # Submit the transaction that deploys the contract
 # tx_hash = Greeter.constructor().transact()
@@ -55,16 +57,16 @@ Payable = platon.contract(abi=abi, bytecode=bytecode)
 #
 # contract_instance = platon.contract(address=contractAddress, abi=abi)
 def SendTxn(txn):
-    signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey)
-    res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-    txn_receipt = platon.waitForTransactionReceipt(res)
+    signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey,net_type=TESTNETHRP,mode='SM')
+    res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+    txn_receipt = platone.waitForTransactionReceipt(res)
     print(res)
     return txn_receipt
 
 txn = Payable.constructor().buildTransaction(
     {
         'chainId':200,
-        'nonce':platon.getTransactionCount(from_address),
+        'nonce':platone.getTransactionCount(from_address)+1,
         'gas':1500000,
         'value':0,
         'gasPrice':1000000000,
@@ -75,7 +77,7 @@ tx_receipt = SendTxn(txn)
 print(tx_receipt)
 
 # Create the contract instance with the newly-deployed address
-payable = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+payable = platone.contract(address=tx_receipt.contractAddress, abi=abi)
 
 # hrpgot, data = bech32.decode("lax", from_address)
 # address = to_checksum_address(bytes(data))

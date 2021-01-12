@@ -3,13 +3,13 @@ from functools import (
 )
 import operator
 
-from client_sdk_python.packages.platon_account import (
+from client_sdk_python.packages.platone_account import (
     Account,
 )
-from client_sdk_python.packages.platon_account.local import (
+from client_sdk_python.packages.platone_account.local import (
     LocalAccount,
 )
-from client_sdk_python.packages.platon_keys.datatypes import (
+from client_sdk_python.packages.platone_keys.datatypes import (
     PrivateKey,
 )
 from client_sdk_python.packages.eth_utils import (
@@ -63,7 +63,7 @@ def gen_normalized_accounts(val):
 def to_account(val):
     raise TypeError(
         "key must be one of the types: "
-        "platon_keys.datatype.PrivateKey, platon_account.local.LocalAccount, "
+        "platone_keys.datatype.PrivateKey, platone_account.local.LocalAccount, "
         "or raw private key as a hex string or byte string. "
         "Was of type {0}".format(type(val)))
 
@@ -99,8 +99,8 @@ def construct_sign_and_send_raw_middleware(private_key_or_account):
     Keyword arguments:
     private_key_or_account -- A single private key or a tuple,
     list or set of private keys. Keys can be any of the following formats:
-      - An platon_account.LocalAccount object
-      - An platon_keys.PrivateKey object
+      - An platone_account.LocalAccount object
+      - An platone_keys.PrivateKey object
       - A raw private key as a hex string or byte string
     """
 

@@ -7,10 +7,10 @@ from client_sdk_python.packages.eth_utils import (
 )
 from client_sdk_python.packages.eth_utils.toolz import curry
 
-from client_sdk_python.packages.platon_keys.constants import (
+from client_sdk_python.packages.platone_keys.constants import (
     SECPK1_N,
 )
-from client_sdk_python.packages.platon_keys.exceptions import (
+from client_sdk_python.packages.platone_keys.exceptions import (
     ValidationError,
 )
 

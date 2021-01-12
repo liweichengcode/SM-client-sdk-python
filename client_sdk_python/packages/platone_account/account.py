@@ -7,16 +7,16 @@ import os
 from cytoolz import (
     dissoc,
 )
-from client_sdk_python.packages.platon_keyfile import (
+from client_sdk_python.packages.platone_keyfile import (
     create_keyfile_json,
     decode_keyfile_json,
 )
-from client_sdk_python.packages.platon_keys import (
+from client_sdk_python.packages.platone_keys import (
     KeyAPI,
     keys,
 )
-from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP,TESTNETHRP
-from client_sdk_python.packages.platon_keys.exceptions import (
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP,TESTNETHRP
+from client_sdk_python.packages.platone_keys.exceptions import (
     ValidationError,
 )
 from client_sdk_python.packages.eth_utils import (
@@ -32,21 +32,21 @@ from hexbytes import (
     HexBytes,
 )
 
-from client_sdk_python.packages.platon_account.datastructures import (
+from client_sdk_python.packages.platone_account.datastructures import (
     AttributeDict,
 )
-from client_sdk_python.packages.platon_account.internal.signing import (
+from client_sdk_python.packages.platone_account.internal.signing import (
     hash_of_signed_transaction,
     sign_message_hash,
     sign_transaction_dict,
     to_standard_signature_bytes,
     to_standard_v,
 )
-from client_sdk_python.packages.platon_account.internal.transactions import (
+from client_sdk_python.packages.platone_account.internal.transactions import (
     Transaction,
     vrs_from,
 )
-from client_sdk_python.packages.platon_account.signers.local import (
+from client_sdk_python.packages.platone_account.signers.local import (
     LocalAccount,
 )
 from client_sdk_python.packages.gmssl import sm2,sm3, func
@@ -63,7 +63,7 @@ class Account(object):
     @combomethod
     def create(self, extra_entropy='', net_type=MIANNETHRP, mode='ECDSA'):
         '''
-        Creates a new private key, and returns it as a :class:`~platon_account.local.LocalAccount`.
+        Creates a new private key, and returns it as a :class:`~platone_account.local.LocalAccount`.
 
         :param extra_entropy: Add extra randomness to whatever randomness your OS can provide
         :type extra_entropy: str or bytes or int
@@ -71,7 +71,7 @@ class Account(object):
 
         .. code-block:: python
 
-            >>> from client_sdk_python.packages.platon_account import Account
+            >>> from client_sdk_python.packages.platone_account import Account
             >>> acct = Account.create('KEYSMASH FJAFJKLDSKF7JKFDJ 1530')
             >>> acct.address
             '0x5ce9454909639D2D17A3F753ce7d93fa0b9aB12E'
@@ -149,7 +149,7 @@ class Account(object):
         client keeps key files.
 
         :param private_key: The raw private key
-        :type private_key: hex str, bytes, int or :class:`platon_keys.datatypes.PrivateKey`
+        :type private_key: hex str, bytes, int or :class:`platone_keys.datatypes.PrivateKey`
         :param str password: The password which you will need to unlock the account in your client
         :returns: The data to use in your encrypted file
         :rtype: dict
@@ -196,7 +196,7 @@ class Account(object):
         Returns a convenient object for working with the given private key.
 
         :param private_key: The raw private key
-        :type private_key: hex str, bytes, int or :class:`platon_keys.datatypes.PrivateKey`
+        :type private_key: hex str, bytes, int or :class:`platone_keys.datatypes.PrivateKey`
         :return: object with methods for signing and encrypting
         :rtype: LocalAccount
 
@@ -323,7 +323,7 @@ class Account(object):
         *(The default is fine for most users)*
 
         :param backend: any backend that works in
-            `platon_keys.KeyApi(backend) <https://github.com/awake006/eth-keys/#keyapibackendnone>`_
+            `platone_keys.KeyApi(backend) <https://github.com/awake006/eth-keys/#keyapibackendnone>`_
 
         '''
         self._keys = KeyAPI(backend)
@@ -339,7 +339,7 @@ class Account(object):
 
         If you would like compatibility with
         :meth:`w3.eth.sign() <web3.eth.Eth.sign>`
-        you can use :meth:`~platon_account.messages.defunct_hash_message`.
+        you can use :meth:`~platone_account.messages.defunct_hash_message`.
 
         Several other message standards are proposed, but none have a clear
         consensus. You'll need to manually comply with any of those message standards manually.
@@ -347,15 +347,15 @@ class Account(object):
         :param message_hash: the 32-byte message hash to be signed
         :type message_hash: hex str, bytes or int
         :param private_key: the key to sign the message with
-        :type private_key: hex str, bytes, int or :class:`platon_keys.datatypes.PrivateKey`
+        :type private_key: hex str, bytes, int or :class:`platone_keys.datatypes.PrivateKey`
         :returns: Various details about the signature - most
           importantly the fields: v, r, and s
-        :rtype: ~platon_account.datastructures.AttributeDict
+        :rtype: ~platone_account.datastructures.AttributeDict
 
         .. code-block:: python
 
             >>> msg = "I♥SF"
-            >>> from client_sdk_python.packages.platon_account.messages import defunct_hash_message
+            >>> from client_sdk_python.packages.platone_account.messages import defunct_hash_message
             >>> msghash = defunct_hash_message(text=msg)
             HexBytes('0x1476abb745d423bf09273f1afd887d951181d25adc66c4834a70491911b7f750')
             >>> key = "0xb25c7db31feed9122727bf0939dc769a96564b2de4c4726d035b36ecf1e5b364"
@@ -405,7 +405,7 @@ class Account(object):
         :param dict transaction_dict: the transaction with keys:
           nonce, chainId, to, data, value, gas, and gasPrice.
         :param private_key: the private key to sign the data with
-        :type private_key: hex str, bytes, int or :class:`platon_keys.datatypes.PrivateKey`
+        :type private_key: hex str, bytes, int or :class:`platone_keys.datatypes.PrivateKey`
         :returns: Various details about the signature - most
           importantly the fields: v, r, and s
         :rtype: AttributeDict
@@ -471,13 +471,13 @@ class Account(object):
     @combomethod
     def _parsePrivateKey(self, key, mode='ECDSA'):
         '''
-        Generate a :class:`platon_keys.datatypes.PrivateKey` from the provided key. If the
-        key is already of type :class:`platon_keys.datatypes.PrivateKey`, return the key.
+        Generate a :class:`platone_keys.datatypes.PrivateKey` from the provided key. If the
+        key is already of type :class:`platone_keys.datatypes.PrivateKey`, return the key.
 
-        :param key: the private key from which a :class:`platon_keys.datatypes.PrivateKey`
+        :param key: the private key from which a :class:`platone_keys.datatypes.PrivateKey`
                     will be generated
-        :type key: hex str, bytes, int or :class:`platon_keys.datatypes.PrivateKey`
-        :returns: the provided key represented as a :class:`platon_keys.datatypes.PrivateKey`
+        :type key: hex str, bytes, int or :class:`platone_keys.datatypes.PrivateKey`
+        :returns: the provided key represented as a :class:`platone_keys.datatypes.PrivateKey`
         '''
         if isinstance(key, self._keys.PrivateKey):
             return key

@@ -1,6 +1,6 @@
 from hexbytes import HexBytes
 from client_sdk_python import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 # import binascii
 # f = open('D:/juzhen/SimpleStorage.wasm','rb')
 # contents=f.read()
@@ -20,7 +20,7 @@ false = False
 
 
 w3 = Web3(HTTPProvider("http://10.1.1.2:6789"))
-platon = PlatON(w3)
+platone = PlatONE(w3)
 print(w3.isConnected())
 # from_address = "lax1du4w3q0h5gpxh2vpdvtl7m8h2p9qj40a2krhx7"
 from_address = "lax1uqug0zq7rcxddndleq4ux2ft3tv6dqljphydrl"
@@ -36,7 +36,7 @@ bytecode='0061736d0100000001470d60017f017f60027f7f0060000060017f0060037f7f7f0060
 abi=[{"constant":false,"input":[{"name":"input","type":"uint64"}],"name":"set","output":"void","type":"Action"},{"constant":false,"input":[],"name":"init","output":"void","type":"Action"},{"constant":true,"input":[],"name":"get","output":"uint64","type":"Action"}]
 print(type(abi))
 # Instantiate and deploy contract
-Payable = platon.wasmcontract(abi=abi, bytecode=bytecode,vmtype=1)
+Payable = platone.wasmcontract(abi=abi, bytecode=bytecode,vmtype=1)
 
 tx_hash = Payable.constructor().transact(
     {
@@ -46,12 +46,12 @@ tx_hash = Payable.constructor().transact(
 )
 
 # Wait for the transaction to be mined, and get the transaction receipt
-tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash)
 print(tx_receipt)
 
 
 # Create the contract instance with the newly-deployed address
-payable = platon.wasmcontract(address=tx_receipt.contractAddress, abi=abi,vmtype=1)
+payable = platone.wasmcontract(address=tx_receipt.contractAddress, abi=abi,vmtype=1)
 
 tx_hash1 = payable.functions.set(10).transact(
     {
@@ -61,7 +61,7 @@ tx_hash1 = payable.functions.set(10).transact(
 )
 
 # Wait for the transaction to be mined, and get the transaction receipt
-tx_receipt = platon.waitForTransactionReceipt(tx_hash1)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash1)
 print(tx_receipt)
 # hrpgot, data = bech32.decode("lax", from_address)
 # address = to_checksum_address(bytes(data))

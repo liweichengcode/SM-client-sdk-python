@@ -29,21 +29,21 @@ from client_sdk_python.packages.eth_utils.typing import (
     ChecksumAddress,
 )
 
-from client_sdk_python.packages.platon_keys.utils.address import (
+from client_sdk_python.packages.platone_keys.utils.address import (
     public_key_bytes_to_address, address_bytes_to_address, address_bytes_to_bech32_address
 )
-from client_sdk_python.packages.platon_keys.utils.numeric import (
+from client_sdk_python.packages.platone_keys.utils.numeric import (
     int_to_byte,
 )
-from client_sdk_python.packages.platon_keys.utils.padding import (
+from client_sdk_python.packages.platone_keys.utils.padding import (
     pad32,
 )
 
-from client_sdk_python.packages.platon_keys.exceptions import (
+from client_sdk_python.packages.platone_keys.exceptions import (
     BadSignature,
     ValidationError,
 )
-from client_sdk_python.packages.platon_keys.validation import (
+from client_sdk_python.packages.platone_keys.validation import (
     validate_private_key_bytes,
     validate_compressed_public_key_bytes,
     validate_uncompressed_public_key_bytes,
@@ -54,7 +54,7 @@ from client_sdk_python.packages.platon_keys.validation import (
 )
 from client_sdk_python.packages.gmssl import sm2, func ,sm3
 if TYPE_CHECKING:
-    from client_sdk_python.packages.platon_keys.backends.base import BaseECCBackend  # noqa: F401
+    from client_sdk_python.packages.platone_keys.backends.base import BaseECCBackend  # noqa: F401
 
 
 # Must compare against version_info[0] and not version_info.major to please mypy.
@@ -81,7 +81,7 @@ class LazyBackend:
     def __init__(self,
                  backend: 'Union[BaseECCBackend, Type[BaseECCBackend], str, None]' = None,
                  ) -> None:
-        from client_sdk_python.packages.platon_keys.backends.base import (  # noqa: F811
+        from client_sdk_python.packages.platone_keys.backends.base import (  # noqa: F811
             BaseECCBackend,
         )
 
@@ -96,7 +96,7 @@ class LazyBackend:
         else:
             raise ValueError(
                 "Unsupported format for ECC backend.  Must be an instance or "
-                "subclass of `platon_keys.backends.BaseECCBackend` or a string of "
+                "subclass of `platone_keys.backends.BaseECCBackend` or a string of "
                 "the dot-separated import path for the desired backend class"
             )
 
@@ -117,7 +117,7 @@ class LazyBackend:
 
     @classmethod
     def get_backend(cls, *args: Any, **kwargs: Any) -> 'BaseECCBackend':
-        from client_sdk_python.packages.platon_keys.backends import get_backend
+        from client_sdk_python.packages.platone_keys.backends import get_backend
         return get_backend(*args, **kwargs)
 
 

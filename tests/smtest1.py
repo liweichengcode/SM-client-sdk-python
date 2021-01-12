@@ -1,7 +1,7 @@
 from client_sdk_python import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
-from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP,TESTNETHRP
-from client_sdk_python.packages.platon_account import Account
+from client_sdk_python.eth import PlatONE
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP,TESTNETHRP
+from client_sdk_python.packages.platone_account import Account
 from client_sdk_python.packages.gmssl import  sm2,sm3,func
 from hexbytes import HexBytes
 # import binascii
@@ -58,8 +58,9 @@ false = False
 
 # account = Account().create(net_type='lax') #,mode='SM'
 # w3 = Web3(HTTPProvider("http://10.1.1.51:6789"))
-w3=Web3(HTTPProvider("http://10.1.1.49:6789"))  #含有国密链的节点
-platon = PlatON(w3)
+# w3=Web3(HTTPProvider("http://10.1.1.49:6789"))  #含有国密链的节点
+w3=Web3(HTTPProvider(" http://58.251.94.108:56789"))  #含有国密链的节点
+platone = PlatONE(w3)
 print(w3.isConnected())
 # from_address = "lax1v58tvxrek2a59ffqeqzru0v76axspkad8jc5xs"
 # send_privatekey = "dd127f840b8452432417140a86f4e1ce02a6c5386e20a4dd9dcdf9c7b9eed4e0"
@@ -81,9 +82,9 @@ signature = '0xe6ca9bba58c88611fad66a6ce8f996908195593807c4b38bd528d2cff09d4eb33
 # Instantiate and deploy contract
 data=b'anything'
 hashdata=HexBytes(sm3.sm3_hash(func.bytes_to_list(data)))
-payable = platon.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
-signhash=platon.account.signHash(hashdata,send_privatekey,'SM')
-verifysign=platon.account.sm_verify(signhash,hashdata,publickey)
+payable = platone.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
+signhash=platone.account.signHash(hashdata,send_privatekey,'SM')
+verifysign=platone.account.sm_verify(signhash,hashdata,publickey)
 
 # pubkey=platon.account.recoverHash(msghash, vrs=vrs)
 # keystore=platon.account.encrypt(send_privatekey,'123456','SM')
@@ -93,13 +94,13 @@ txn = payable.constructor().buildTransaction({
     'chainId':200,
     'from': from_address,
     'gas':2000000,
-    'nonce':platon.getTransactionCount(from_address),
+    'nonce':platone.getTransactionCount(from_address),
     }
 )
 def SendTxn(txn):
-    signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey,net_type=TESTNETHRP,mode='SM') #,mode='SM'
-    res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-    txn_receipt = platon.waitForTransactionReceipt(res)
+    signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey,net_type=TESTNETHRP,mode='SM') #,mode='SM'
+    res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+    txn_receipt = platone.waitForTransactionReceipt(res)
     print(res)
     return txn_receipt
 tx_receipt=SendTxn(txn)

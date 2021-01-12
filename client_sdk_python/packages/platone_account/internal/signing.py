@@ -6,7 +6,7 @@ from client_sdk_python.packages.eth_utils import (
     to_int,
 )
 
-from client_sdk_python.packages.platon_account.internal.transactions import (
+from client_sdk_python.packages.platone_account.internal.transactions import (
     ChainAwareUnsignedTransaction,
     UnsignedTransaction,
     encode_transaction,

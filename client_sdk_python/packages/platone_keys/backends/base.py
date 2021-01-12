@@ -1,6 +1,6 @@
 from typing import Any  # noqa: F401
 
-from client_sdk_python.packages.platon_keys.datatypes import (
+from client_sdk_python.packages.platone_keys.datatypes import (
     BaseSignature,
     NonRecoverableSignature,
     PrivateKey,

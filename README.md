@@ -10,7 +10,7 @@
 
 ## 说明
 
-client-sdk-python 是一个服务于Platon底层链的python sdk。通过web3对象与底层链进行交互。底层实现上，它通过 RPC 调用与本地节点通信。client-sdk-python可以与任何暴露了RPC接口的PlatON节点连接。
+client-sdk-python 是一个服务于PlatONE底层链的python sdk。通过web3对象与底层链进行交互。底层实现上，它通过 RPC 调用与本地节点通信。client-sdk-python可以与任何暴露了RPC接口的PlatONE节点连接。
 
 主要功能用于 获取区块数据、发送交易、使用智能合约进行交互、以及其他的一些应用。
 
@@ -50,21 +50,21 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
 #### **1** Web3模式
 
-​       Platon节点之间通过P2PMessage通信。而节点和python sdk之间使用内置的Web3模式，发送JSON-RPC 请求，经过HTTP 、websocket、IPC等方式连接节点。
+​       PlatONE节点之间通过P2PMessage通信。而节点和python sdk之间使用内置的Web3模式，发送JSON-RPC 请求，经过HTTP 、websocket、IPC等方式连接节点。
 
 #### **2** 节点连接
 
-- 以HTTP 连接为例，连接一个Platon节点
+- 以HTTP 连接为例，连接一个PlatONE节点
 
   ```python
   w3 = Web3(HTTPProvider("http://localhost:6789"))
-  platon = PlatON(w3)
+  platone = PlatONE(w3)
   print(w3.isConnected())
   ```
 
-  其中 localhost:6789为Platon的一个节点Url，请输入可访问的Platon节点Url。
+  其中 localhost:6789为PlatONE的一个节点Url，请输入可访问的PlatONE节点Url。
 
-  platon为platON类的一个实例。
+  platone为PlatONE类的一个实例。
 
 - 以Websocket连接为例
 
@@ -72,7 +72,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
   ```python
   w3 = Web3(WebsocketProvider("http://localhost:6789"))
-  platon = PlatON(w3)
+  platone = PlatONE(w3)
   print(w3.isConnected())
   ```
 
@@ -82,7 +82,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
   ```python
   w3 = Web3(IPCProvider("http://localhost:6789"))
-  platon = PlatON(w3)
+  platone = PlatONE(w3)
   print(w3.isConnected())
   ```
 
@@ -220,9 +220,9 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
 #### **4** 链上查询api
 
-与Platon 链上节点连接成功以后，可通过platon里的api查询链上节点的相关信息
+与PlatONE链上节点连接成功以后，可通过platone里的api查询链上节点的相关信息
 
-- ##### (1) platon.blockNumber 
+- ##### (1) platone.blockNumber 
 
   返回当前块编号
 
@@ -232,7 +232,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
 
 
-- ##### (2) platon.syncing
+- ##### (2) platone.syncing
 
   用来检查节点当前是否已经与网络同步
 
@@ -253,7 +253,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
     
 
-- ##### (3) platon.gasPrice
+- ##### (3) platone.gasPrice
 
   用来获取当前gas价格，该价格由最近的若干块的gas价格中值决定。
 
@@ -263,7 +263,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
 
 
-- ##### (4) platon.accounts
+- ##### (4) platone.accounts
 
   方法返回当前节点控制的账户列表。
 
@@ -273,7 +273,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
   
 
-- ##### (5) platon.evidences
+- ##### (5) platone.evidences
 
   返回账户地址指定位置的存储内容。
 
@@ -283,7 +283,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
   
 
-- ##### (6) platon.consensusStatus
+- ##### (6) platone.consensusStatus
 
   返回当前节点所在区块树的共识状态信息。
 
@@ -293,7 +293,7 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 
 
 
-- ##### (7) platon.getBalance(address)
+- ##### (7) platone.getBalance(address)
 
   用来获取指定块中特定账户地址的余额
 
@@ -308,24 +308,24 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple 第三方包名称
 部分代码示例：
 
 ```python
-from client_sdk_p，ython import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python import Web3, HTTPProvider
+from client_sdk_python.eth import PlatONE
 from hexbytes import HexBytes
 
 # get blockNumber syncing gasPrice accounts evidences consensusStatus
 w3 = Web3(HTTPProvider("http://localhost:6789"))
-platon = PlatON(w3)
-block_number = platon.blockNumber
+platone = PlatONE(w3)
+block_number = platone.blockNumber
 print(block_number)
-print(platon.syncing)
-print(platon.gasPrice)
-print(platon.accounts)
-print(platon.evidences)
-print(platon.consensusStatus)
+print(platone.syncing)
+print(platone.gasPrice)
+print(platone.accounts)
+print(platone.evidences)
+print(platone.consensusStatus)
 
 # get Balance
 address = 'lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja'
-balance = platon.getBalance(address)
+balance = platone.getBalance(address)
 print(balance) 
 
 #输出
@@ -339,41 +339,41 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
 ```
 
-- ##### (8) platon.getStorageAt()
+- ##### (8) platone.getStorageAt()
 
   返回一个地址的指定位置存储内容
 
   调用：
 
   ```
-  platon.getStorageAt(address, position [, defaultBlock] )
+  platone.getStorageAt(address, position [, defaultBlock] )
   ```
 
   参数：
 
   - `address`：String - 要读取的地址
   - `position`：Number - 存储中的索引编号
-  - `defaultBlock`：Number|String - 可选，使用该参数覆盖platon.defaultBlock属性值
+  - `defaultBlock`：Number|String - 可选，使用该参数覆盖platone.defaultBlock属性值
   
 
 返回值：
 
 一个AttributeDict对象，其解析值为存储中指定位置的内容。
 
-- ##### (9) platon.getCode
+- ##### (9) platone.getCode
 
   返回指定地址处的代码。
 
   调用：
 
   ```
-  platon.getCode(address [, defaultBlock] )
+  platone.getCode(address [, defaultBlock] )
   ```
 
   参数：
 
   - `address`：String - 要读取代码的地址
-  - `defaultBlock`：Number|String - 可选，使用该参数覆盖platon.defaultBlock属性值
+  - `defaultBlock`：Number|String - 可选，使用该参数覆盖platone.defaultBlock属性值
   
 
 返回值：
@@ -382,14 +382,14 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
 
 
-- ##### (10) platon.getBlock()
+- ##### (10) platone.getBlock()
 
   返回指定块编号或块哈希对应的块。
 
   调用：
 
   ```
-  platon.getBlock(blockHashOrBlockNumber [, returnTransactionObjects] )
+  platone.getBlock(blockHashOrBlockNumber [, returnTransactionObjects] )
   ```
 
   参数：
@@ -440,14 +440,14 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
   
   
   
-- ##### (11) platon.getBlockTransactionCount()
+- ##### (11) platone.getBlockTransactionCount()
 
   方法返回指定块中的交易数量。
 
   调用：
 
   ```
-  platon.getBlockTransactionCount(blockHashOrBlockNumber)
+  platone.getBlockTransactionCount(blockHashOrBlockNumber)
   ```
 
   参数：
@@ -461,14 +461,14 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
   
 
-- ##### (12) platon.getTransaction()
+- ##### (12) platone.getTransaction()
 
   返回具有指定哈希值的交易对象。
 
   调用：
 
   ```
-  platon.getTransaction(transactionHash)
+  platone.getTransaction(transactionHash)
   ```
 
   参数：
@@ -479,18 +479,18 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
   返回值：
 
-  一个AttributeDict对象，其解析值为具有给定哈希值的交易对象。该对象具体内容描述参见platon.waitForTransactionReceipt。
+  一个AttributeDict对象，其解析值为具有给定哈希值的交易对象。该对象具体内容描述参见platone.waitForTransactionReceipt。
 
   
 
-- ##### (13) platon.getRawTransaction()
+- ##### (13) platone.getRawTransaction()
 
   返回具有指定哈希值的交易对象HexBytes 值。
 
   调用：
 
   ```
-  platon.getRawTransaction(transactionHash )
+  platone.getRawTransaction(transactionHash )
   ```
 
   参数：
@@ -503,14 +503,14 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
   
 
-- ##### (14) platon.getTransactionFromBlock()
+- ##### (14) platone.getTransactionFromBlock()
 
   返回指定块中特定索引号的交易对象。
 
   调用：
 
   ```
-  getTransactionFromBlock(hashStringOrNumber, indexNumber )
+  platone.getTransactionFromBlock(hashStringOrNumber, indexNumber )
   ```
 
   参数：
@@ -520,18 +520,18 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
   返回值：
 
-  一个AttributeDict对象，其解析值为交易对象，该对象具体内容描述参见platon.getTransaction()
+  一个AttributeDict对象，其解析值为交易对象，该对象具体内容描述参见platone.getTransaction()
 
   
 
-- ##### (15) platon.getTransactionByBlock()
+- ##### (15) platone.getTransactionByBlock()
 
   返回指定块中特定索引号的交易对象。
 
   调用：
 
   ```
-  platon.getTransactionByBlock(hashStringOrNumber, indexNumber )
+  platone.getTransactionByBlock(hashStringOrNumber, indexNumber )
   ```
 
   参数：
@@ -541,7 +541,7 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
   返回值：
 
-  一个AttributeDict对象，其解析值为交易对象，该对象具体内容描述参见platon.getTransaction()
+  一个AttributeDict对象，其解析值为交易对象，该对象具体内容描述参见platone.getTransaction()
 
 
 
@@ -549,22 +549,22 @@ AttributeDict({'blockTree': AttributeDict({'root': AttributeDict({'viewNumber': 
 
 - ##### (1) sendTransaction(transactionObject)
 
-  向platon 链上提交一个交易（已被节点签名，尚未提交的交易）
+  向platone 链上提交一个交易（已被节点签名，尚未提交的交易）
 
   参数：
 
   - `transactionObject`：Object - 要发送的交易对象，包含以下字段：
-    - from - String|Number: 交易发送方账户地址，不设置该字段的话，则使用platon.defaultAccount属性值。可设置为一个地址或本地钱包platon.accounts.wallet中的索引序号
+    - from - String|Number: 交易发送方账户地址，不设置该字段的话，则使用platone.defaultAccount属性值。可设置为一个地址或本地钱包platone.accounts.wallet中的索引序号
     - to - String: 可选，消息的目标地址，对于合约创建交易该字段为null
     - value - Number|String|BN|BigNumber: (optional) The value transferred for the transaction in VON, also the endowment if it’s a contract-creation transaction.
     - gas - Number: 可选，默认值：待定，用于交易的gas总量，未用完的gas会退还
-    - gasPrice - Number|String|BN|BigNumber: 可选，该交易的gas价格，单位为VON，默认值为platon.gasPrice属性值
+    - gasPrice - Number|String|BN|BigNumber: 可选，该交易的gas价格，单位为VON，默认值为platone.gasPrice属性值
     - data - String: 可选，可以是包含合约方法数据的ABI字符串，或者是合约创建交易中的初始化代码
     - nonce - Number: 可选，使用该字段覆盖使用相同nonce值的挂起交易
 
   返回值：
 
-  `platon.sendTransaction()`方法的返回值是32字节长的交易哈希值。
+  `platone.sendTransaction()`方法的返回值是32字节长的交易哈希值。
 
   
 
@@ -607,8 +607,8 @@ data = {
     "gas": 1000000,
     "gasPrice": 1000000000,
 }
-transaction_hex = HexBytes(platon.sendTransaction(data)).hex()
-result = platon.waitForTransactionReceipt(transaction_hex)
+transaction_hex = HexBytes(platone.sendTransaction(data)).hex()
+result = platone.waitForTransactionReceipt(transaction_hex)
 print(result)
 
 #输出 
@@ -617,7 +617,7 @@ AttributeDict({'blockHash': HexBytes('0x7bfe17689560c773b1cade579f1bd2cf85aeea9f
 
 
 
-- ##### (3) platon.getTransactionReceipt()
+- ##### (3) platone.getTransactionReceipt()
 
   返回指定交易的收据对象。
   如果交易处于pending状态，则返回null。
@@ -625,7 +625,7 @@ AttributeDict({'blockHash': HexBytes('0x7bfe17689560c773b1cade579f1bd2cf85aeea9f
   调用：
 
   ```
-  platon.getTransactionReceipt(hash)
+  platone.getTransactionReceipt(hash)
   ```
 
   参数：
@@ -634,24 +634,24 @@ AttributeDict({'blockHash': HexBytes('0x7bfe17689560c773b1cade579f1bd2cf85aeea9f
 
   返回值：
 
-  一个AttributeDict对象，其解析值为交易的收据对象或者null。该对象具体内容描述参见platon.waitForTransactionReceipt。
+  一个AttributeDict对象，其解析值为交易的收据对象或者null。该对象具体内容描述参见platone.waitForTransactionReceipt。
 
   
 
-- ##### (4) platon.getTransactionCount()
+- ##### (4) platone.getTransactionCount()
 
   返回指定地址发出的交易数量。
 
   调用：
 
   ```
-  platon.getTransactionCount(address [, defaultBlock] )
+  platone.getTransactionCount(address [, defaultBlock] )
   ```
 
   参数：
 
   - `address`：String - 要查询的账户地址
-  - `defaultBlock`：Number|String - 可选，设置该参数来覆盖platon.defaultBlock属性值
+  - `defaultBlock`：Number|String - 可选，设置该参数来覆盖platone.defaultBlock属性值
 
   返回值：
 
@@ -659,22 +659,22 @@ AttributeDict({'blockHash': HexBytes('0x7bfe17689560c773b1cade579f1bd2cf85aeea9f
 
   
 
-- ##### （6）platon.sendRawTransaction()
+- ##### （6）platone.sendRawTransaction()
 
-  向platon 链上提交一个签名的序列化的交易
+  向platone 链上提交一个签名的序列化的交易
 
   ```
-platon.sendRawTransaction(signTransaction，private-key)
+platone.sendRawTransaction(signTransaction，private-key)
   ```
   
   参数：
   
   - `signTransaction`：Object - 要发送的签名交易对象，包含以下字段：
-    - from - String|Number: 交易发送方账户地址，不设置该字段的话，则使用platon.defaultAccount属性值。可设置为一个地址或本地钱包platon.accounts.wallet中的索引序号
+    - from - String|Number: 交易发送方账户地址，不设置该字段的话，则使用platone.defaultAccount属性值。可设置为一个地址或本地钱包platone.accounts.wallet中的索引序号
     - to - String: 可选，消息的目标地址，对于合约创建交易该字段为null
     - value - Number|String|BN|BigNumber: (optional) The value transferred for the transaction in VON, also the endowment if it’s a contract-creation transaction.
   - gas - Number: 可选，默认值：待定，用于交易的gas总量，未用完的gas会退还
-    - gasPrice - Number|String|BN|BigNumber: 可选，该交易的gas价格，单位为VON，默认值为platon.gasPrice属性值
+    - gasPrice - Number|String|BN|BigNumber: 可选，该交易的gas价格，单位为VON，默认值为platone.gasPrice属性值
   - data - String: 可选，可以是包含合约方法数据的ABI字符串，或者是合约创建交易中的初始化代码
     - nonce - Number: 可选，使用该字段覆盖使用相同nonce值的挂起交易
 
@@ -686,14 +686,14 @@ platon.sendRawTransaction(signTransaction，private-key)
   
   
   
-- ##### (7) platon.replaceTransaction()
+- ##### (7) platone.replaceTransaction()
 
   发送新的交易new_transaction，替代原来的交易transaction_hash（pending状态）
 
   调用：
 
   ```python
-  platon.replaceTransaction`(transaction_hash,new_transaction)
+  platone.replaceTransaction`(transaction_hash,new_transaction)
   ```
 
   参数：
@@ -707,14 +707,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
   
 
-- ##### (8)  platon.generateGasPrice()
+- ##### (8)  platone.generateGasPrice()
 
   使用选中的gas price 策略去计算一个gas price
 
   调用：
 
   ```
-  platon.generateGasPrice(gas_price_strategy)
+  platone.generateGasPrice(gas_price_strategy)
   ```
 
 ​         返回值： 
@@ -723,14 +723,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
 
 
-- ##### (9) platon.setGasPriceStrategy()
+- ##### (9) platone.setGasPriceStrategy()
 
   设定选定的gas price 策略
 
   调用：
 
   ```
-  platon.setGasPriceStrategy(gas_price_strategy)
+  platone.setGasPriceStrategy(gas_price_strategy)
   ```
 
   参数：
@@ -743,14 +743,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
 
 
-- ##### (10) platon.modifyTransaction()
+- ##### (10) platone.modifyTransaction()
 
   发送新的参数，去修正处于pending状态的交易
 
   调用：
 
   ```python
-  platon.modifyTransaction(transaction_hash, **transaction_params)
+  platone.modifyTransaction(transaction_hash, **transaction_params)
   ```
 
   参数：
@@ -764,20 +764,20 @@ platon.sendRawTransaction(signTransaction，private-key)
 
   
 
-- ##### (11)  platon.sign()
+- ##### (11)  platone.sign()
 
   方法使用指定的账户对数据进行签名，该账户必须先解锁。
 
   调用：
 
   ```
-  platon.sign(dataToSign, address )
+  platone.sign(dataToSign, address )
   ```
 
   参数：
 
   - `dataToSign`：String - 待签名的数据。对于字符串将首先使用utils.utf8ToHex()方法将其转换为16进制
-  - `address`：String|Number - 用来签名的账户地址。或者本地钱包platon.accounts.wallet中的地址或其序号
+  - `address`：String|Number - 用来签名的账户地址。或者本地钱包platone.accounts.wallet中的地址或其序号
 
   返回值：
 
@@ -785,14 +785,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
   
 
-- ##### (12)  platon.estimateGas()
+- ##### (12)  platone.estimateGas()
 
   通过执行一个消息调用来估算交易的gas用量。
 
   调用：
 
   ```
-  platon.estimateGas(callObject)
+  platone.estimateGas(callObject)
   ```
 
   参数：
@@ -807,14 +807,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
 #### 6 其他 api
 
-- ##### (1) platon.filter
+- ##### (1) platone.filter
 
   生成一个新的过滤器，根据参数的不同，生成不同类型的过滤器
 
   调用：
 
   ```
-  platon.filter(params)
+  platone.filter(params)
   ```
 
   参数：
@@ -828,24 +828,24 @@ platon.sendRawTransaction(signTransaction，private-key)
     
 
   ```python
-  >>> platon.filter('latest')
+  >>> platone.filter('latest')
   <client_sdk_python.utils.filters.BlockFilter object at 0x0000020640DA1048>
-  >>> platon.filter('pending')
+  >>> platone.filter('pending')
   <client_sdk_python.utils.filters.TransactionFilter object at 0x0000020640DA7C08>
-  >>> platon.filter({'fromBlock': 1000000, 'toBlock': 1000100, 'address': 'lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja'})
+  >>> platone.filter({'fromBlock': 1000000, 'toBlock': 1000100, 'address': 'lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja'})
   <client_sdk_python.utils.filters.LogFilter object at 0x0000020640B09D88>
   ```
 
 
 
-- ##### (2) platon.getFilterChanges()
+- ##### (2) platone.getFilterChanges()
 
   轮询指定的过滤器，并返回自上次轮询之后新生成的日志数组
 
   调用：
 
   ```
-  platon.getFilterChanges(filter_id)
+  platone.getFilterChanges(filter_id)
   ```
 
   参数：
@@ -857,22 +857,22 @@ platon.sendRawTransaction(signTransaction，private-key)
   示例：
 
   ```python
-  >>> filt=platon.filter('latest')
-  >>>platon.getFilterChanges(filt.filter_id)
+  >>> filt=platone.filter('latest')
+  >>>platone.getFilterChanges(filt.filter_id)
   [HexBytes('0x59c4cb22c15ed83279e288ccc94980162e7cc7c1ff9c6b4fb6d9584308727b46'), HexBytes('0xb205babee34ba218816d1a32e995a4c8f4ccf95d3315c6a259955f1598ed5e4d'), HexBytes('0xb491ef8c0cc55cc1b70e9af766ada828a5a96bbb41f6aa26b87c98dbf09ac762'), HexBytes('0x455ae7bee30a02210fc17ade1cec3d783ce9614f81149ea650efc27a39e495a5'), HexBytes('0xd8c8f327e6613dc9a638c4ad2e2e37ce511ea80d374fea91d961d3fb55ed0e3a'), HexBytes('0x92e85ab7340ae8f6c0da6d5fa5cab5a3ae61f7d69158b612b7caf470de4e0958'), HexBytes('0x612d8f92bdec45052576b62a03a5c6d5b219ad5eecf088163cc629efc506a4dc'), HexBytes('0xd433b552bf421ee416c31d7c9162d8f08a7580d906538a3e0156f504161c6889'), HexBytes('0x5f9d64faf699f6e688989bcb6133c001cd5d24315c22375c5f1935909ee5b31e'), HexBytes('0x70b10afd243a5f6c0992bdb80bf75974cf3b8b78c254c054e6824621d2a55a33'), HexBytes('0x5f631fc85544b8e04504a71e99a67f8020596221ecfbefefde98fb44f4c3cf65'), HexBytes('0x6012ab1a562e818e4ca3e6e1b719e21cd900ac1daaf26c87f983c75e2cddd9ab'), HexBytes('0x2cc3d3e257dd9af953968a75a653cd9cfb0f6157aca1ba3089ebfe65d32c3543'), HexBytes('0x3696eea818d042c0cae606093262268ec36aa0f23904101cdb25d7c1595bbeae'), HexBytes('0x4825078dc7cfb3f065acd1d300a3c111b51445488862bebd44801af6272d36cd'), HexBytes('0x3df27825fa9e89b91f83df4769ae6477bf060c5ff078e8f1b05edee136368f4f'), HexBytes('0x9e7bdf9ef1ce7e66b3615fa882fa420dfefe3c93efb433ff824d6c7fa73e08ca'), HexBytes('0x0d8f9a5a5cd4e95a57f6183c94826861a259e631d0127f4b0f268e104bc3c92e'), HexBytes('0xa310dbde88c8721fad793c7f2cb594b2bec108482990d2c56e3dc427f09d21af'), HexBytes('0x2e944efb7d3cf8bf9c354a02b34cbc262a044b5e2fd484daad8f7b81663e4cb0'), HexBytes('0x19c72519b3fcf6d74bcef061f0f6b12eabbf9cb13d482db38b94e1fb86dd4b25'), HexBytes('0x435956b99ce8d0777d5d7e19e87d3277eccd757a56da6d100fb7b536ff417ded'), HexBytes('0xe291f184a80c1c65a44198ed8c2d35d5ef98f65dada59a0e1fc28aa21bbe69ea'), HexBytes('0x21b088023a06a9c85b16fcdd6bab07697905241a139d8a3efc0e0e7a9d7a00a0'), HexBytes('0x6bf9d36ec461b66191ec8f026bec905a0f46a83707960987bb559d13a5186082'), HexBytes('0x85aaf311fe7c2c80340f334b7f52bb0c4282341559e056e852e92135bc04e917'), HexBytes('0x033e7b67bd5f509de11e38cc142a70def69048f5d214ac5d15e83102a93a011d'), HexBytes('0x02d55d41e12ea9edd986da149e42f302719ad769eb4496872271c063a6ab3bcd'), HexBytes('0x3914a9fcf5be7aca72a50d59a1b7cdb18f96540dafba0de84f8297228cb9159a'), HexBytes('0xc45b0552883b21012431f9e76ccd5ce9e3c8550ecbbb223a1d69ebc6a354b34d'), HexBytes('0xbfa4324da6aafa66907586c535a2207a082063670fff102f8df19ab1a4e665d0')]
   
   ```
 
 
 
-- ##### (3) platon.getFilterLogs()
+- ##### (3) platone.getFilterLogs()
 
   轮询指定的过滤器，并返回对应的日志数组
 
   调用：
 
   ```
-  platon.getFilterLogs(filter_id)
+  platone.getFilterLogs(filter_id)
   ```
 
   参数：
@@ -881,14 +881,14 @@ platon.sendRawTransaction(signTransaction，private-key)
 
 
 
-- ##### (4) platon.uninstallFilter()
+- ##### (4) platone.uninstallFilter()
 
   卸载指定的过滤器，返回成功或失败的bool值
 
   调用：
 
   ```
-  platon.getFilterLogs(filter_id)
+  platone.getFilterLogs(filter_id)
   ```
 
   - 参数：
@@ -897,20 +897,20 @@ platon.sendRawTransaction(signTransaction，private-key)
   示例：
 
   ```python
-  >>> platon.uninstallFilter(filt.filter_id)
+  >>> platone.uninstallFilter(filt.filter_id)
   True
   ```
 
   
 
-- ##### (5) platon.getLogs()
+- ##### (5) platone.getLogs()
 
   根据指定的选项返回历史日志。
 
   调用：
 
   ```
-  platon.getLogs(options )
+  platone.getLogs(options )
   ```
 
   参数：
@@ -985,7 +985,7 @@ platon.sendRawTransaction(signTransaction，private-key)
           'gas':1500000,
       }
   )
-  print(platon.waitForTransactionReceipt(tx_hash1))
+  print(platone.waitForTransactionReceipt(tx_hash1))
   print('get : {}'.format(
       payable.functions.getInt64().call()
   ))
@@ -1038,7 +1038,7 @@ platon.sendRawTransaction(signTransaction，private-key)
   示例代码：
 
   ```python
-  greeter = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+  greeter = platone.contract(address=tx_receipt.contractAddress, abi=abi)
   
   tx_hash = greeter.functions.setVar(100).transact(
       {
@@ -1047,7 +1047,7 @@ platon.sendRawTransaction(signTransaction，private-key)
       }
   )
   
-  tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+  tx_receipt = platone.waitForTransactionReceipt(tx_hash)
   print(tx_receipt)
   
   topic_param = greeter.events.MyEvent().processReceipt(tx_receipt)
@@ -1101,7 +1101,7 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   ```python
   from hexbytes import HexBytes
   from client_sdk_python import Web3, HTTPProvider
-  from client_sdk_python.eth import PlatON
+  from client_sdk_python.eth import PlatONE
   from platon_keys.utils import bech32,address
   from client_sdk_python.packages.eth_utils import to_checksum_address
   
@@ -1109,7 +1109,7 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   false = False
   
   w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
-  platon = PlatON(w3)
+  platone = PlatONE(w3)
   print(w3.isConnected())
   
   from_address = "lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja"
@@ -1123,14 +1123,14 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja
   ```
 
-  ​     然后通过函数contract_deploy(bytecode, fromAddress)，以发送交易的方式在PlatON区块链的节点上部署evm合约,返回交易哈希transactionHash 。
+  ​     然后通过函数contract_deploy(bytecode, fromAddress)，以发送交易的方式在PlatONE区块链的节点上部署evm合约,返回交易哈希transactionHash 。
 
-  ​     tx_receipt为platon.waitForTransactionReceipt解析transactionHash 后获得的部署回执（部署也是一种交易，交易通过platon.waitForTransactionReceipt获得交易回执）。
+  ​     tx_receipt为platone.waitForTransactionReceipt解析transactionHash 后获得的部署回执（部署也是一种交易，交易通过platone.waitForTransactionReceipt获得交易回执）。
 
   ```python
   def contract_deploy(bytecode, fromAddress):
       bytecode = bytecode
-      transactionHash = platon.sendTransaction(
+      transactionHash = platone.sendTransaction(
           {
               "from": fromAddress,
               "gas": 1000000,
@@ -1143,14 +1143,14 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   
   tx = contract_deploy(bytecode, from_address)
   print(tx)
-  tx_receipt = platon.waitForTransactionReceipt(tx)
+  tx_receipt = platone.waitForTransactionReceipt(tx)
   print(tx_receipt)
   contractAddress = tx_receipt.contractAddress
   print(contractAddress)
   
   ```
 
-   platon.sendTransaction（参数）
+   platone.sendTransaction（参数）
 
   参数：
 
@@ -1178,9 +1178,9 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
 
   - 其中 
 
-    第一行数据为函数contract_deploy中的platon.sendTransaction的交易结果
+    第一行数据为函数contract_deploy中的platone.sendTransaction的交易结果
 
-  ​        第二行数据为platon.waitForTransactionReceipt获得的交易回执
+  ​        第二行数据为platone.waitForTransactionReceipt获得的交易回执
 
   ​        第三行为合约部署成功的合约地址
 
@@ -1192,18 +1192,18 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
 
   首先定义一个函数SendTxn(txn)
 
-  包含：签名交易 platon.account.signTransaction （私钥签名）
+  包含：签名交易 platone.account.signTransaction （私钥签名）
 
-  ​            发送交易 platon.sendRawTransaction
+  ​            发送交易 platone.sendRawTransaction
 
-  ​            获得交易回执 platon.waitForTransactionReceipt
+  ​            获得交易回执 platone.waitForTransactionReceipt
 
   ```python
   send_privatekey = "b7a7372e78160f71a1a75e03c4aa72705806a05cf14ef39c87fdee93d108588c"
   def SendTxn(txn):
-      signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey)
-      res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-      txn_receipt = platon.waitForTransactionReceipt(res)
+      signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey)
+      res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+      txn_receipt = platone.waitForTransactionReceipt(res)
       print(res)
       return txn_receipt
     
@@ -1214,12 +1214,12 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   通过functions调用方法ifControl，输入参数20，通过buildTransaction发送交易信息
 
   ```python
-  contract_instance = platon.contract(address=contractAddress, abi=abi)
+  contract_instance = platone.contract(address=contractAddress, abi=abi)
   
   txn = contract_instance.functions.ifControl(20).buildTransaction(
       {
           'chainId':200,
-          'nonce':platon.getTransactionCount(from_address),
+          'nonce':platone.getTransactionCount(from_address),
           'gas':2000000,
           'value':0,
           'gasPrice':1000000000,
@@ -1257,7 +1257,7 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
 you are a middle man
   ```
   
-   其中 第一行数据为函数SendTxn中的platon.sendRawTransaction的交易结果
+   其中 第一行数据为函数SendTxn中的platone.sendRawTransaction的交易结果
 
 ​        第二行数据为方法ifControl向链上发送信息，交易的结果
 
@@ -1280,7 +1280,7 @@ you are a middle man
   其中.events方法为合约专用的事件api。
   
   ```python
-  greeter = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+  greeter = platone.contract(address=tx_receipt.contractAddress, abi=abi)
   
   tx_hash = greeter.functions.setVar(100).transact(
       {
@@ -1289,7 +1289,7 @@ you are a middle man
       }
   )
   
-  tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+  tx_receipt = platone.waitForTransactionReceipt(tx_hash)
   print(tx_receipt)
   
   topic_param = greeter.events.MyEvent().processReceipt(tx_receipt)
@@ -1349,12 +1349,12 @@ print(topic_param)
 
   ```python
   from client_sdk_python import Web3, HTTPProvider
-  from client_sdk_python.eth import PlatON
+  from client_sdk_python.eth import PlatONE
   true = True
   false = False
   
   w3 = Web3(HTTPProvider("http://10.1.1.2:6789"))
-  platon = PlatON(w3)
+  platone = PlatONE(w3)
   print(w3.isConnected())
   from_address = "lax1uqug0zq7rcxddndleq4ux2ft3tv6dqljphydrl"
   
@@ -1363,13 +1363,13 @@ print(topic_param)
   
   ```
   
-  wasm类型合约通过platon.wasmcontract建立合约实例
+  wasm类型合约通过platone.wasmcontract建立合约实例
   
   对实例调用方法.constructor()进行合约的构建，通过transact发送交易到链上
   
 ```python
   # Instantiate and deploy contract
-Payable = platon.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
+Payable = platone.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
   
 tx_hash = Payable.constructor().transact(
       {
@@ -1379,7 +1379,7 @@ tx_hash = Payable.constructor().transact(
   )
   
   # Wait for the transaction to be mined, and get the transaction receipt
-  tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+  tx_receipt = platone.waitForTransactionReceipt(tx_hash)
   print(tx_receipt)
 ```
 
@@ -1402,7 +1402,7 @@ AttributeDict({'blockHash': HexBytes('0x7a193be2cf86aedcf844c0478c6f64d226affb55
   ​    通过调用函数setBool，向链上传送参数false（发送交易）
 
   ```python
-  payable = platon.wasmcontract(address=tx_receipt.contractAddress, abi=cabi,vmtype=1)
+  payable = platone.wasmcontract(address=tx_receipt.contractAddress, abi=cabi,vmtype=1)
   
   tx_hash0 = payable.functions.setBool(false).transact(
       {
@@ -1410,7 +1410,7 @@ AttributeDict({'blockHash': HexBytes('0x7a193be2cf86aedcf844c0478c6f64d226affb55
           'gas':1500000,
       }
   )
-  print(platon.waitForTransactionReceipt(tx_hash0))
+  print(platone.waitForTransactionReceipt(tx_hash0))
   print('get : {}'.format(
       payable.functions.getBool().call()
   ))
@@ -1437,7 +1437,7 @@ AttributeDict({'blockHash': HexBytes('0x7a193be2cf86aedcf844c0478c6f64d226affb55
   tx_hash是函数setUint32传参数的交易实例
   
   ```python
-  greeter = platon.wasmcontract(address=tx_receipt.contractAddress, abi=abi,vmtype=1)
+  greeter = platone.wasmcontract(address=tx_receipt.contractAddress, abi=abi,vmtype=1)
   tx_hash = greeter.functions.setUint32(1000).transact(
       {
           'from': from_address,
@@ -1445,7 +1445,7 @@ AttributeDict({'blockHash': HexBytes('0x7a193be2cf86aedcf844c0478c6f64d226affb55
       }
   )
   
-  tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+  tx_receipt = platone.waitForTransactionReceipt(tx_hash)
   print(tx_receipt)
   
   topic_param = greeter.events.setUint32Evt().processReceipt(tx_receipt)
@@ -1475,13 +1475,13 @@ print(topic_param)
    在 client-sdk-python中，可通过Account().create生成账户，账户中包含账户地址和私钥。可选择两种不同算法体系的账户。其中默认的是ECDSA-SHA3算法体系的账户，可以选择不输入模式或者输入mode='ECDSA'；如果选择国密SM2-SM3算法体系，输入mode='SM'。示例如下：
 
 ```python
->>>from client_sdk_python.packages.platon_account import Account
+>>>from client_sdk_python.packages.platone_account import Account
 >>>account = Account().create(net_type='lax', mode='SM') #net_type为选择链模式，主网为'lat',测试网为'lax'
 ##输出
 >>>account.addrress #账户地址
-'lax1jkak6wudnp3289dav8wcvpkkdu28fqf3q7rrvc'
+'lax1w8cu7e945gndp8ns3pvvmctawg5gy2w8jan80d'
 >>>account.privateKey #账户私钥
-'6d86da8039e20aca51e7f9ef84eb2d4d7e921907ff3833e7ee3a59940c2e2833'
+b'\x9foMqd!\x0c\xcc\xd8\xdat@\xec\x0fx\xf0\xde\xe4\x0eCH\x80o\x0c\xb1tD\xbf\xad\xf4=\x19'
 ```
 
 #### 2 签名
@@ -1493,23 +1493,23 @@ print(topic_param)
 对交易进行签名。其中mode='SM',是使用国密SM2-SM3算法体系进行加密签名。若选择ECDSA-SHA3算法体系加密签名，则mode='ECDSA'或不输入mode（默认为‘ECDSA’）。示例如下：
 
 ```python
->>>from client_sdk_python.eth import PlatON
->>>from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP,TESTNETHRP
-#建立一个platon实例
->>>payable = platon.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
+>>>from client_sdk_python.eth import PlatONE
+>>>from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP,TESTNETHRP
+#建立一个platone实例
+>>>payable = platone.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
 # 构建wasm合约部署交易
 >>>txn = payable.constructor().buildTransaction({
     'chainId':200,
     'from': from_address,
     'gas':2000000,
-    'nonce':platon.getTransactionCount(from_address),
+    'nonce':platone.getTransactionCount(from_address),
     }
 )
 #对交易签名,输入txn：要签名的交易，private_key=privatekey：私钥，
 #net_type=TESTNETHRP:测试网模式,mode='SM'：国密体系模式
->>>signed_txn = platon.account.signTransaction(txn,private_key=privatekey,net_type=TESTNETHRP,mode='SM') 
+>>>signed_txn = platone.account.signTransaction(txn,private_key=privatekey,net_type=TESTNETHRP,mode='SM') 
 #签名后的交易，通过sendRawTransaction()发送到链上
->>>res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
+>>>res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
 
 #输出
 >>>print(signed_txn)
@@ -1534,7 +1534,7 @@ from hexbytes import HexBytes
 >>>print(hashdata)
 b'\x98I\xd8\x8c\xeaN\x9e\x1cE\xfb\xdb\xed\xde\x8b/\x0bL%8\xbbd\x80\xcbn\xf3\xc3\xd7\xd0\xa5\x93\xf7B'
 #对哈希值签名
->>>signhash=platon.account.signHash(hashdata,send_privatekey,'SM')
+>>>signhash=platone.account.signHash(hashdata,send_privatekey,'SM')
 #输出
 AttrDict({'messageHash': HexBytes('0x9849d88cea4e9e1c45fbdbedde8b2f0b4c2538bb6480cb6ef3c3d7d0a593f742'), 'r': 42777166305181141356572790789073013714288234893717623059309741388261417737877, 's': 81549620290441050157320649492144980673944769998313003796324361269435263570940, 'v': 28, 'signature': HexBytes('0x5e9304a3ae7b1ce4afd24211a472810fd21f7fb0b21f57882ec7ed4b4c06de95b44b730bacdef124a0d3bbe4eba262135eb2bb69ab7383c01473f643442753fc1c')})
 ```
@@ -1551,7 +1551,7 @@ AttrDict({'messageHash': HexBytes('0x9849d88cea4e9e1c45fbdbedde8b2f0b4c2538bb648
 #若没有获得公钥，可通过私钥转化获得公钥
 >>>keys=sm2.CryptSM2(1,1)
 >>>publickey=keys.privatekey_to_publickey(privatekey) #国密体系的私钥转公钥方式
->>>verifysign=platon.account.sm_verify(signhash,hashdata,publickey)
+>>>verifysign=platone.account.sm_verify(signhash,hashdata,publickey)
 #输出：
 True
 ```
@@ -1569,7 +1569,7 @@ True
 其中，send_privatekey为要保存的私钥，格式为16进制的字符串；password为设置的保存密码，格式为是字符串或者数字；mode为私钥的密钥模式，分为‘SM'和'ECDSA'两种，默认为'ECDSA'模式。
 
 ```python
-keystore=platon.account.encrypt(send_privatekey,'123456','SM')
+keystore=platone.account.encrypt(send_privatekey,'123456','SM')
 ```
 
 代码运行后keystore为加密结果，其内容格式为：
@@ -1600,7 +1600,7 @@ keystore=platon.account.encrypt(send_privatekey,'123456','SM')
 其中keystore是加密后的结果。可以是keystore中的内容（dict形式），或者可以是当前目录下中的之前保存了keystore内容的json文件名，比如lat1jkak6wudnp3289dav8wcvpkkdu28fqf30m3vzh.json。若是在别的目录下，则需要在json文件名前添加绝对路径如：'D:/filestore/lat1jkak6wudnp3289dav8wcvpkkdu28fqf30m3vzh.json'
 
 ```python
->>>prikey=platon.account.decrypt(keystore,'123456','SM')
+>>>prikey=platone.account.decrypt(keystore,'123456','SM')
 #输出：
 >>>print(prikey)
 b'm\x86\xda\x809\xe2\n\xcaQ\xe7\xf9\xef\x84\xeb-M~\x92\x19\x07\xff83\xe7\xee:Y\x94\x0c.(3'

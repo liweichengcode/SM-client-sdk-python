@@ -6,23 +6,23 @@ from client_sdk_python.packages.eth_utils import (
     big_endian_to_int,
 )
 
-from client_sdk_python.packages.platon_keys.datatypes import (  # noqa: F401
+from client_sdk_python.packages.platone_keys.datatypes import (  # noqa: F401
     BaseSignature,
     NonRecoverableSignature,
     PrivateKey,
     PublicKey,
     Signature,
 )
-from client_sdk_python.packages.platon_keys.exceptions import (
+from client_sdk_python.packages.platone_keys.exceptions import (
     BadSignature,
 )
-from client_sdk_python.packages.platon_keys.validation import (
+from client_sdk_python.packages.platone_keys.validation import (
     validate_uncompressed_public_key_bytes,
 )
-from client_sdk_python.packages.platon_keys.utils import (
+from client_sdk_python.packages.platone_keys.utils import (
     der,
 )
-from client_sdk_python.packages.platon_keys.utils.numeric import (
+from client_sdk_python.packages.platone_keys.utils.numeric import (
     coerce_low_s,
 )
 

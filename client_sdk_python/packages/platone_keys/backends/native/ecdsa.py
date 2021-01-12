@@ -10,7 +10,7 @@ from client_sdk_python.packages.eth_utils import (
     big_endian_to_int,
 )
 
-from client_sdk_python.packages.platon_keys.constants import (
+from client_sdk_python.packages.platone_keys.constants import (
     SECPK1_N as N,
     SECPK1_G as G,
     SECPK1_Gx as Gx,
@@ -19,11 +19,11 @@ from client_sdk_python.packages.platon_keys.constants import (
     SECPK1_A as A,
     SECPK1_B as B,
 )
-from client_sdk_python.packages.platon_keys.exceptions import (
+from client_sdk_python.packages.platone_keys.exceptions import (
     BadSignature,
 )
 
-from client_sdk_python.packages.platon_keys.utils.padding import pad32
+from client_sdk_python.packages.platone_keys.utils.padding import pad32
 
 from .jacobian import (
     inv,

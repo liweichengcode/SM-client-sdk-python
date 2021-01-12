@@ -10,8 +10,8 @@ from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import scrypt
 from Crypto.Util import Counter
 
-from client_sdk_python.packages.platon_keys import keys
-from client_sdk_python.packages.platon_keys.datatypes import (
+from client_sdk_python.packages.platone_keys import keys
+from client_sdk_python.packages.platone_keys.datatypes import (
     PublicKey,sm3_tobech32_address,sm3_tobech32_testaddress)
 from client_sdk_python.packages.eth_utils import (
     big_endian_to_int,

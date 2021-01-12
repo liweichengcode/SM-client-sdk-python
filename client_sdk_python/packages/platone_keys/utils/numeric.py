@@ -1,4 +1,4 @@
-from client_sdk_python.packages.platon_keys.constants import (
+from client_sdk_python.packages.platone_keys.constants import (
     SECPK1_N,
 )
 

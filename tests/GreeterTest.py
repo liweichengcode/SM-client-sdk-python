@@ -1,5 +1,5 @@
 from client_sdk_python import Web3,HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 from client_sdk_python.contract import ConciseContract
 
 # Solidity source code
@@ -27,7 +27,7 @@ true = True
 false = False
 
 w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
-platon = PlatON(w3)
+platone = PlatONE(w3)
 print(w3.isConnected())
 
 from_address = "lax1l0sm6ath520sa8tsq499ya8a5j9qkzh2zxgddm"
@@ -41,7 +41,7 @@ bytecode = '608060405234801561001057600080fd5b5060405180604001604052806005815260
 abi = [{'inputs': [], 'payable': False, 'stateMutability': 'nonpayable', 'type': 'constructor'}, {'constant': True, 'inputs': [], 'name': 'greet', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}, {'constant': True, 'inputs': [], 'name': 'greeting', 'outputs': [{'internalType': 'string', 'name': '', 'type': 'string'}], 'payable': False, 'stateMutability': 'view', 'type': 'function'}, {'constant': False, 'inputs': [{'internalType': 'string', 'name': '_greeting', 'type': 'string'}], 'name': 'setGreeting', 'outputs': [], 'payable': False, 'stateMutability': 'nonpayable', 'type': 'function'}]
 # platon.defaultAccount = platon.accounts[0]
 # Instantiate and deploy contract
-Greeter = platon.contract(abi=abi, bytecode=bytecode)
+Greeter = platone.contract(abi=abi, bytecode=bytecode)
 print(Greeter)
 # Submit the transaction that deploys the contract
 tx_hash = Greeter.constructor().transact(
@@ -52,10 +52,10 @@ tx_hash = Greeter.constructor().transact(
 )
 
 # Wait for the transaction to be mined, and get the transaction receipt
-tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash)
 
 # Create the contract instance with the newly-deployed address
-greeter = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+greeter = platone.contract(address=tx_receipt.contractAddress, abi=abi)
 
 # Display the default greeting from the contract
 print('Default contract greeting: {}'.format(
@@ -71,7 +71,7 @@ tx_hash = greeter.functions.setGreeting('Nihao').transact(
 )
 
 # Wait for transaction to be mined...
-platon.waitForTransactionReceipt(tx_hash)
+print(platone.waitForTransactionReceipt(tx_hash))
 
 # Display the new greeting value
 print('Updated contract greeting: {}'.format(

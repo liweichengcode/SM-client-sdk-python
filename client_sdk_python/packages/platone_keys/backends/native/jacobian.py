@@ -1,6 +1,6 @@
 from typing import Tuple  # noqa: F401
 
-from client_sdk_python.packages.platon_keys.constants import (
+from client_sdk_python.packages.platone_keys.constants import (
     SECPK1_P as P,
     SECPK1_N as N,
     SECPK1_A as A,

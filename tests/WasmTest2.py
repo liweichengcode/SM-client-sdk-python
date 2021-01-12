@@ -1,6 +1,6 @@
 from hexbytes import HexBytes
 from client_sdk_python import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 import binascii
 # f = open('D:/juzhen/HelloWorld.wasm','rb')
 # f = open('D:/juzhen/SimpleStorage.wasm','rb')
@@ -23,7 +23,7 @@ false = False
 # PublicKey :  4f94a5c22ac8f652b142c507179a20b2af96279408ffb97bb2e8381590898c8679719ae575401d8cdf3b14ced771e6644dbd21451fd2073a27e2f69f19514841
 
 w3 = Web3(HTTPProvider("http://10.1.1.8:6789"))
-platon = PlatON(w3)
+platone = PlatONE(w3)
 print(w3.isConnected())
 from_address = "lax1h6hexqvrpzavrpt0ng2h8jt4zc8g6jq93x9pcc"
 print(from_address)
@@ -31,7 +31,7 @@ print(from_address)
 send_privatekey = "dab5135cec6008caec5b1d45ee73965a5d59e630d8c10c195f347fca26fbdd57"
 def contract_deploy(bytecode, fromAddress):
     bytecode = bytecode
-    transactionHash = platon.sendTransaction(
+    transactionHash = platone.sendTransaction(
         {
             "from": fromAddress,
             "gas": 1000000,
@@ -48,24 +48,24 @@ print(type(abi))
 
 tx = contract_deploy(bytecode, from_address)
 print(tx)
-tx_receipt = platon.waitForTransactionReceipt(tx)
+tx_receipt = platone.waitForTransactionReceipt(tx)
 print(tx_receipt)
 contractAddress = tx_receipt.contractAddress
 print(contractAddress)
 
 def SendTxn(txn):
-    signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey)
-    res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-    txn_receipt = platon.waitForTransactionReceipt(res)
+    signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey)
+    res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+    txn_receipt = platone.waitForTransactionReceipt(res)
     print(res)
     return txn_receipt
 
-contract_instance = platon.contract(address=contractAddress, abi=abi)
+contract_instance = platone.contract(address=contractAddress, abi=abi)
 
 txn = contract_instance.functions.ifControl(20).buildTransaction(
     {
         'chainId':200,
-        'nonce':platon.getTransactionCount(from_address),
+        'nonce':platone.getTransactionCount(from_address),
         'gas':2000000,
         'value':0,
         'gasPrice':1000000000,

@@ -1,8 +1,8 @@
-from client_sdk_python.packages.platon_account.signers.base import (
+from client_sdk_python.packages.platone_account.signers.base import (
     BaseAccount,
 )
-from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP, TESTNETHRP
-from client_sdk_python.packages.platon_keys.datatypes import sm3_tobech32_address,sm3_tobech32_testaddress
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP, TESTNETHRP
+from client_sdk_python.packages.platone_keys.datatypes import sm3_tobech32_address,sm3_tobech32_testaddress
 
 
 class LocalAccount(BaseAccount):
@@ -28,7 +28,7 @@ class LocalAccount(BaseAccount):
 
     def __init__(self, key, account, net_type=MIANNETHRP, mode='ECDSA'):
         '''
-        :param platon_keys.PrivateKey key: to prefill in private key execution
+        :param platone_keys.PrivateKey key: to prefill in private key execution
         :param web3.account.Account account: the key-unaware management API
         '''
         self._publicapi = account
@@ -61,7 +61,7 @@ class LocalAccount(BaseAccount):
     def encrypt(self, password):
         '''
         Generate a string with the encrypted key, as in
-        :meth:`~platon_account.account.Account.encrypt`, but without a private key argument.
+        :meth:`~platone_account.account.Account.encrypt`, but without a private key argument.
         '''
         return self._publicapi.encrypt(self.privateKey, password)
 

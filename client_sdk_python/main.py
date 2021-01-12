@@ -9,12 +9,12 @@ from client_sdk_python.packages.eth_utils import (
     # to_checksum_address,
     to_wei,
 )
-from client_sdk_python.packages.platon_keys.utils.address import MIANNETHRP, TESTNETHRP
+from client_sdk_python.packages.platone_keys.utils.address import MIANNETHRP, TESTNETHRP
 
 from client_sdk_python.packages.ens import ENS
 
 from client_sdk_python.admin import Admin
-from client_sdk_python.eth import Eth, PlatON
+from client_sdk_python.eth import Eth, PlatONE
 from client_sdk_python.iban import Iban
 from client_sdk_python.miner import Miner
 from client_sdk_python.net import Net
@@ -72,7 +72,7 @@ from client_sdk_python.utils.normalizers import (
 
 def get_default_modules():
     return {
-        "platon": PlatON,
+        "platon": PlatONE,
         "eth": Eth,
         "net": Net,
         "personal": Personal,

@@ -1,5 +1,5 @@
 from client_sdk_python import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 # import binascii
 # f = open('D:/juzhen/JS_wasmtest1.wasm','rb')
 # contents=f.read()
@@ -18,7 +18,7 @@ false = False
 # send_privatekey = "983759fe9aac227c535b21d78792d79c2f399b1d43db46ae6d50a33875301557"
 
 w3 = Web3(HTTPProvider("http://10.1.1.51:6789"))
-platon = PlatON(w3)
+platone = PlatONE(w3)
 print(w3.isConnected())
 
 from_address = "atx1c85wwztzpjefcvaev6wxpsrqp2gpfjyp6lmfqd"
@@ -30,7 +30,7 @@ bytecode='0061736d0100000001681260027f7f0060017f017f60027f7f017f60017f0060037f7f
 cabi = [{"constant":false,"input":[{"name":"input","type":"string[10]"}],"name":"setArray","output":"void","type":"Action"},{"constant":false,"input":[{"name":"input","type":"FixedHash<256>"}],"name":"setFixedHash","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getFixedHash","output":"FixedHash<256>","type":"Action"},{"constant":true,"input":[],"name":"getChar","output":"int8","type":"Action"},{"baseclass":[],"fields":[{"name":"head","type":"string"}],"name":"message","type":"struct"},{"constant":false,"input":[{"name":"msg","type":"message"}],"name":"setMessage","output":"void","type":"Action"},{"constant":false,"input":[{"name":"input","type":"int32"}],"name":"setInt32","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getPair","output":"pair<string,int32>","type":"Action"},{"anonymous":false,"input":[{"name":"topic","type":"string"},{"name":"arg1","type":"string"}],"name":"transfer","topic":1,"type":"Event"},{"anonymous":false,"input":[{"name":"topic","type":"string"},{"name":"arg1","type":"string"},{"name":"arg2","type":"uint16"}],"name":"setUint16Evt","topic":1,"type":"Event"},{"constant":false,"input":[{"name":"addr","type":"FixedHash<20>"}],"name":"setAddress","output":"void","type":"Action"},{"anonymous":false,"input":[{"name":"topic1","type":"string"},{"name":"topic2","type":"uint32"},{"name":"arg1","type":"string"},{"name":"arg2","type":"uint32"},{"name":"arg3","type":"uint32"}],"name":"setUint32Evt","topic":2,"type":"Event"},{"constant":false,"input":[],"name":"init","output":"void","type":"Action"},{"constant":false,"input":[{"name":"input","type":"uint8"}],"name":"setUint8","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getUint8","output":"uint8","type":"Action"},{"constant":false,"input":[{"name":"input","type":"uint16"}],"name":"setUint16","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getUint16","output":"uint16","type":"Action"},{"constant":false,"input":[{"name":"input","type":"uint32"}],"name":"setUint32","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getUint32","output":"uint32","type":"Action"},{"constant":false,"input":[{"name":"input","type":"uint64"}],"name":"setUint64","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getUint64","output":"uint64","type":"Action"},{"constant":false,"input":[{"name":"input","type":"string"}],"name":"setString","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getString","output":"string","type":"Action"},{"constant":false,"input":[{"name":"input","type":"bool"}],"name":"setBool","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getBool","output":"bool","type":"Action"},{"constant":false,"input":[{"name":"input","type":"int8"}],"name":"setChar","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getMessage","output":"message","type":"Action"},{"baseclass":["message"],"fields":[{"name":"body","type":"string"},{"name":"end","type":"string"}],"name":"my_message","type":"struct"},{"constant":false,"input":[{"name":"msg","type":"my_message"}],"name":"setMyMessage","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getMyMessage","output":"my_message","type":"Action"},{"constant":false,"input":[{"name":"input","type":"int8"}],"name":"setInt8","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getInt8","output":"int8","type":"Action"},{"constant":false,"input":[{"name":"input","type":"int16"}],"name":"setInt16","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getInt16","output":"int16","type":"Action"},{"constant":true,"input":[],"name":"getInt32","output":"int32","type":"Action"},{"constant":false,"input":[{"name":"input","type":"int64"}],"name":"setInt64","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getInt64","output":"int64","type":"Action"},{"constant":false,"input":[{"name":"vec","type":"uint16[]"}],"name":"setVector","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getVector","output":"uint16[]","type":"Action"},{"constant":false,"input":[{"name":"input","type":"map<string,string>"}],"name":"setMap","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getMap","output":"map<string,string>","type":"Action"},{"constant":false,"input":[{"name":"msg","type":"message"},{"name":"input1","type":"int32"},{"name":"input2","type":"bool"}],"name":"testMultiParams","output":"void","type":"Action"},{"constant":false,"input":[{"name":"input","type":"uint8[]"}],"name":"setBytes","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getBytes","output":"uint8[]","type":"Action"},{"constant":true,"input":[],"name":"getArray","output":"string[10]","type":"Action"},{"constant":false,"input":[{"name":"input","type":"pair<string,int32>"}],"name":"setPair","output":"void","type":"Action"},{"constant":false,"input":[{"name":"input","type":"set<string>"}],"name":"setSet","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getSet","output":"set<string>","type":"Action"},{"constant":false,"input":[{"name":"input","type":"list<string>"}],"name":"setList","output":"void","type":"Action"},{"constant":true,"input":[],"name":"getList","output":"list<string>","type":"Action"},{"constant":true,"input":[],"name":"getAddress","output":"FixedHash<20>","type":"Action"}]
 
 # Instantiate and deploy contract
-Payable = platon.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
+Payable = platone.wasmcontract(abi=cabi, bytecode=bytecode,vmtype=1)
 
 tx_hash = Payable.constructor().transact(
     {
@@ -40,12 +40,12 @@ tx_hash = Payable.constructor().transact(
 )
 
 # Wait for the transaction to be mined, and get the transaction receipt
-tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash)
 print(tx_receipt)
 
 
 # Create the contract instance with the newly-deployed address
-payable = platon.wasmcontract(address=tx_receipt.contractAddress, abi=cabi,vmtype=1)
+payable = platone.wasmcontract(address=tx_receipt.contractAddress, abi=cabi,vmtype=1)
 
 tx_hash0 = payable.functions.setBool(false).transact(
     {
@@ -53,7 +53,7 @@ tx_hash0 = payable.functions.setBool(false).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash0))
+print(platone.waitForTransactionReceipt(tx_hash0))
 print('get : {}'.format(
     payable.functions.getBool().call()
 ))
@@ -67,7 +67,7 @@ tx_hash1 = payable.functions.setInt64(-9223372036854775808).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash1))
+print(platone.waitForTransactionReceipt(tx_hash1))
 print('get : {}'.format(
     payable.functions.getInt64().call()
 ))
@@ -80,7 +80,7 @@ tx_hash2 = payable.functions.setUint64(18446744073709551615).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash2))
+print(platone.waitForTransactionReceipt(tx_hash2))
 print('get : {}'.format(
     payable.functions.getUint64().call()
 ))
@@ -93,7 +93,7 @@ tx_hash3 = payable.functions.setInt32(-2147483648).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash3))
+print(platone.waitForTransactionReceipt(tx_hash3))
 print('get : {}'.format(
     payable.functions.getInt32().call()
 ))
@@ -106,7 +106,7 @@ tx_hash4 = payable.functions.setUint32(4294967295).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash4))
+print(platone.waitForTransactionReceipt(tx_hash4))
 print('get : {}'.format(
     payable.functions.getUint32().call()
 ))
@@ -118,7 +118,7 @@ tx_hash5 = payable.functions.setString('helloworld').transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash5))
+print(platone.waitForTransactionReceipt(tx_hash5))
 print('get : {}'.format(
     payable.functions.getString().call()
 ))
@@ -131,7 +131,7 @@ tx_hash6 = payable.functions.setChar(62).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash6))
+print(platone.waitForTransactionReceipt(tx_hash6))
 print('get : {}'.format(
     payable.functions.getChar().call()
 ))
@@ -143,7 +143,7 @@ tx_hash7 = payable.functions.setAddress('lax1du4w3q0h5gpxh2vpdvtl7m8h2p9qj40a2kr
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash7))
+print(platone.waitForTransactionReceipt(tx_hash7))
 print('get : {}'.format(
     payable.functions.getAddress().call()
 ))
@@ -157,7 +157,7 @@ tx_hash8 = payable.functions.setList(liststring).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash8))
+print(platone.waitForTransactionReceipt(tx_hash8))
 print('get : {}'.format(
     payable.functions.getList().call()
 ))
@@ -171,7 +171,7 @@ tx_hash8a = payable.functions.setSet(setstring).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash8a))
+print(platone.waitForTransactionReceipt(tx_hash8a))
 print('get : {}'.format(
     payable.functions.getSet().call()
 ))
@@ -186,7 +186,7 @@ tx_hash9 = payable.functions.setBytes(uintbyte).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash9))
+print(platone.waitForTransactionReceipt(tx_hash9))
 print('get : {}'.format(
     payable.functions.getBytes().call()
 ))
@@ -199,7 +199,7 @@ tx_hash9a = payable.functions.setVector(uint16vec).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash9a))
+print(platone.waitForTransactionReceipt(tx_hash9a))
 print('get : {}'.format(
     payable.functions.getVector().call()
 ))
@@ -214,7 +214,7 @@ tx_hash10 = payable.functions.setMap(mapstr).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash10))
+print(platone.waitForTransactionReceipt(tx_hash10))
 print('get : {}'.format(
     payable.functions.getMap().call()
 ))
@@ -228,7 +228,7 @@ tx_hash11 = payable.functions.setArray(arraystr).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash11))
+print(platone.waitForTransactionReceipt(tx_hash11))
 print('get : {}'.format(
     payable.functions.getArray().call()
 ))
@@ -242,7 +242,7 @@ tx_hash12 = payable.functions.setPair(pairlist).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash12))
+print(platone.waitForTransactionReceipt(tx_hash12))
 print('get : {}'.format(
     payable.functions.getPair().call()
 ))
@@ -256,7 +256,7 @@ tx_hash13 = payable.functions.setMyMessage(mymessage).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash13))
+print(platone.waitForTransactionReceipt(tx_hash13))
 print('get : {}'.format(
     payable.functions.getMyMessage().call()
 ))
@@ -269,7 +269,7 @@ tx_hash14 = payable.functions.setMessage(message).transact(
         'gas':1500000,
     }
 )
-print(platon.waitForTransactionReceipt(tx_hash14))
+print(platone.waitForTransactionReceipt(tx_hash14))
 print('get : {}'.format(
     payable.functions.getMessage().call()
 ))

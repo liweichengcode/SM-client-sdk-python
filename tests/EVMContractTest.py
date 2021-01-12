@@ -1,24 +1,27 @@
 from hexbytes import HexBytes
 from client_sdk_python import Web3, HTTPProvider
-from client_sdk_python.eth import PlatON
-from client_sdk_python.packages.platon_keys.utils import bech32,address
+from client_sdk_python.eth import PlatONE
+from client_sdk_python.packages.platone_keys.utils import bech32,address
 from client_sdk_python.packages.eth_utils import to_checksum_address
 
 true = True
 false = False
 
-w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
-platon = PlatON(w3)
+w3=Web3(HTTPProvider(" http://58.251.94.108:56789"))  #含有国密链的节点
+# w3 = Web3(HTTPProvider("http://10.1.1.5:6789"))
+platone = PlatONE(w3)
 print(w3.isConnected())
 
 from_address = "lax1yjjzvjph3tw4h2quw6mse25y492xy7fzwdtqja"
 print(from_address)
 
-send_privatekey = "16e80ad4079462cc7f9748af2f9cf03e8f7384bed597c086db4f11a98c3b08f0"
+send_privatekey = "5e32fbb0afa8eb81e9534259b0f67ab6f3a33d6aecc0c56c1042e82f9847d641"
+# print('account: '+w3.personal.importRawKey(send_privatekey, "12345678"))
+print(w3.personal.unlockAccount("lax1zpqy70pxgj2z0c2rez338nphrvw62m4l60fv6f", "12345678", 999999))
 
 def contract_deploy(bytecode, fromAddress):
     bytecode = bytecode
-    transactionHash = platon.sendTransaction(
+    transactionHash = platone.sendTransaction(
         {
             "from": fromAddress,
             "gas": 1000000,
@@ -35,10 +38,10 @@ abi = [{"constant":False,"inputs":[],"name":"doWhileControl","outputs":[{"intern
 
 tx = contract_deploy(bytecode, from_address)
 print(tx)
-tx_receipt = platon.waitForTransactionReceipt(tx)
+tx_receipt = platone.waitForTransactionReceipt(tx)
 print(tx_receipt)
 contractAddress = tx_receipt.contractAddress
-print(contractAddress)
+print("contractAddress:" + contractAddress)
 
 # contractAddress = bech32.bech32_decode(contractAddress)
 hrpgot, data = bech32.decode("lax", from_address)
@@ -47,16 +50,16 @@ print('qqq')
 print(address)
 
 def SendTxn(txn):
-    signed_txn = platon.account.signTransaction(txn,private_key=send_privatekey)
-    res = platon.sendRawTransaction(signed_txn.rawTransaction).hex()
-    txn_receipt = platon.waitForTransactionReceipt(res)
+    signed_txn = platone.account.signTransaction(txn,private_key=send_privatekey)
+    res = platone.sendRawTransaction(signed_txn.rawTransaction).hex()
+    txn_receipt = platone.waitForTransactionReceipt(res)
     print(res)
     return txn_receipt
 
 
 
 # print(len([10, 14, 31, 23, 10, 20, 20, 9, 15, 9, 0, 15, 12, 20, 6, 15, 12, 8, 5, 6, 28, 22, 7, 25, 11, 30, 2, 27, 10, 23, 19, 11]))
-contract_instance = platon.contract(address=contractAddress, abi=abi)
+contract_instance = platone.contract(address=contractAddress, abi=abi)
 
 # txn = contract_instance.functions.ifControl(20).buildTransaction(
 #     {

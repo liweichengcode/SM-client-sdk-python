@@ -11,8 +11,8 @@ from .ecdsa import (
     decompress_public_key,
 )
 
-from client_sdk_python.packages.platon_keys.backends.base import BaseECCBackend
-from client_sdk_python.packages.platon_keys.datatypes import (  # noqa: F401
+from client_sdk_python.packages.platone_keys.backends.base import BaseECCBackend
+from client_sdk_python.packages.platone_keys.datatypes import (  # noqa: F401
     BaseSignature,
     NonRecoverableSignature,
     PrivateKey,

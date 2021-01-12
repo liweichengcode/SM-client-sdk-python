@@ -1,11 +1,12 @@
 from client_sdk_python import Web3,HTTPProvider
-from client_sdk_python.eth import PlatON
+from client_sdk_python.eth import PlatONE
 
 true = True
 false = False
 
-w3 = Web3(HTTPProvider("http://10.1.1.2:6789"))
-platon = PlatON(w3)
+w3=Web3(HTTPProvider(" http://58.251.94.108:56789"))  #含有国密链的节点
+# w3 = Web3(HTTPProvider("http://10.1.1.2:6789"))
+platone = PlatONE(w3)
 print(w3.isConnected())
 
 from_address = "lax1uqug0zq7rcxddndleq4ux2ft3tv6dqljphydrl"
@@ -17,7 +18,7 @@ bytecode = '608060405234801561001057600080fd5b50610169806100206000396000f3fe6080
 
 abi = [{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"_var","type":"uint256"}],"name":"MyEvent","type":"event"},{"constant":true,"inputs":[],"name":"_myVar","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"uint8","name":"_var","type":"uint8"}],"name":"setVar","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getVar","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"}]
 
-Payable = platon.contract(abi=abi, bytecode=bytecode)
+Payable = platone.contract(abi=abi, bytecode=bytecode)
 
 tx_hash = Payable.constructor().transact(
     {
@@ -27,10 +28,10 @@ tx_hash = Payable.constructor().transact(
 )
 
 # Wait for the transaction to be mined, and get the transaction receipt
-tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash)
 
 # Create the contract instance with the newly-deployed address
-greeter = platon.contract(address=tx_receipt.contractAddress, abi=abi)
+greeter = platone.contract(address=tx_receipt.contractAddress, abi=abi)
 
 tx_hash = greeter.functions.setVar(100).transact(
     {
@@ -39,7 +40,7 @@ tx_hash = greeter.functions.setVar(100).transact(
     }
 )
 
-tx_receipt = platon.waitForTransactionReceipt(tx_hash)
+tx_receipt = platone.waitForTransactionReceipt(tx_hash)
 print(tx_receipt)
 
 topic_param = greeter.events.MyEvent().processReceipt(tx_receipt)
