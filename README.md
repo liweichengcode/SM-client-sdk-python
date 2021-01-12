@@ -1102,7 +1102,7 @@ python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数
   from hexbytes import HexBytes
   from client_sdk_python import Web3, HTTPProvider
   from client_sdk_python.eth import PlatONE
-  from platon_keys.utils import bech32,address
+  from client_sdk_python.packages.platone_keys.utils import bech32,address
   from client_sdk_python.packages.eth_utils import to_checksum_address
   
   true = True
