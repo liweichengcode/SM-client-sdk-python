@@ -1067,28 +1067,28 @@ platone.sendRawTransaction(signTransaction，private-key)
 
 #### 1 、合约介绍
 
-PlatON区块链支持使用solidity语言创建的智能合约(evm)，同时也支持WebAssembly (WASM)来执行用户编写的智能合约。其中WASM是一种为栈式虚拟机设计的二进制指令集。WASM被设计为可供类似C/C++/Rust等高级语言的平台编译目标，最初设计目的是解决 JavaScript 的性能问题。WASM是由 W3C 牵头正在推进的 Web 标准，并得到了谷歌、微软和 Mozilla 等浏览器厂商的支持。
+PlatONE区块链支持使用solidity语言创建的智能合约(evm)，同时也支持WebAssembly (WASM)来执行用户编写的智能合约。其中WASM是一种为栈式虚拟机设计的二进制指令集。WASM被设计为可供类似C/C++/Rust等高级语言的平台编译目标，最初设计目的是解决 JavaScript 的性能问题。WASM是由 W3C 牵头正在推进的 Web 标准，并得到了谷歌、微软和 Mozilla 等浏览器厂商的支持。
 
-关于evm和wasm合约的介绍、创建、编译等详细内容可参考[Platon智能合约](https://devdocs.platon.network/docs/zh-CN/WASM_Smart_Contract/)
+关于evm和wasm合约的介绍、创建、编译等详细内容可参考[PlatONE智能合约](https://devdocs.platone.network/docs/zh-CN/WASM_Smart_Contract/)
 
 
 
 #### **2**、 合约编译
 
-python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数据与PlatON区块链进行交互。
+python sdk目前支持evm、wasm合约编译后形成的bin和abi作为合约数据与PlatONE区块链进行交互。
 
-- **(1)**  evm合约(使用solidity语言创建)可使用platon-truffle进行编译、部署、调用。具体可参考[solidity编译器](https://github.com/PlatONnetwork/solidity)与[platon-truffle](https://platon-truffle.readthedocs.io/en/v0.13.1/getting-started/installation.html)
-- **(2)**  wasm合约(使用C/C++/Rust等语言创建)可使用PlatON-CDT 或者platon-truffle进行编译、部署、调用。具体可参考[PlatON-CDT 编译器](https://github.com/PlatONnetwork/PlatON-CDT/tree/feature/wasm)
+- **(1)**  evm合约(使用solidity语言创建)可使用platone-truffle进行编译、部署、调用。具体可参考[solidity编译器](https://github.com/PlatONEnetwork/solidity)与[platone-truffle](https://platone-truffle.readthedocs.io/en/v0.13.1/getting-started/installation.html)
+- **(2)**  wasm合约(使用C/C++/Rust等语言创建)可使用PlatONE-CDT 或者platone-truffle进行编译、部署、调用。具体可参考[PlatONE-CDT 编译器](https://github.com/PlatONEnetwork/PlatONE-CDT/tree/feature/wasm)
 
 
 
 #### 3、SDK 对evm合约的调用
 
-- ##### (1) 使用platon-truffle在本机对evm合约进行编译
+- ##### (1) 使用platone-truffle在本机对evm合约进行编译
 
   获得bin与abi。以Helloworld合约为例。
 
-​      使用platon-truffle对Helloworld.sol编译后，产生的build/contracts/HelloWorld.json中，获取其中的abi和bytecode(即bin)。     
+​      使用platone-truffle对Helloworld.sol编译后，产生的build/contracts/HelloWorld.json中，获取其中的abi和bytecode(即bin)。     
 
 - ##### (2) 通过python SDK对Helloworld合约部署
 
@@ -1320,12 +1320,12 @@ print(topic_param)
 
 
 
-- ##### (1) 使用PlatON-CDT在本机对wasm合约进行编译
+- ##### (1) 使用PlatONE-CDT在本机对wasm合约进行编译
 
-  以wasmcontract.cpp为例。本机安装PlatON-CDT成功后，在PlatON-CDT/build/bin中输入代码       
+  以wasmcontract.cpp为例。本机安装PlatONE-CDT成功后，在PlatONE-CDT/build/bin中输入代码       
 
   ```
-  platon-cpp wasmcontract.cpp
+  platone-cpp wasmcontract.cpp
   ```
 
   编译成功后，在wasmcontract/build/contracts中有两个文件
