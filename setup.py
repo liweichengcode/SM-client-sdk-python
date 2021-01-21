@@ -58,9 +58,9 @@ extras_require['dev'] = (
 )
 
 setup(
-    name='client_sdk_python',
+    name='platone_sdk_python',
     # *IMPORTANT*: Don't manually change the version here. Use the 'bumpversion' utility.
-    version='0.13.1.7',
+    version='3.3.0.0',
     description="""PlatONE Client SDK python""",
     # long_description_markdown_filename='README.md',
     author='Piper shinnng',
